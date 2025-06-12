@@ -33,7 +33,7 @@ public class ProdutoController {
     @Inject
     ProdutoService service;
 
-    //TODO: FALTA TESTAR
+    
     @GET
     @Operation(summary = "Listar todos os produtos")
     @APIResponse(responseCode = "200", description = "Lista de produtos")
@@ -48,7 +48,7 @@ public class ProdutoController {
 
     }
 
-    //ROTA TESTADA NO POSTMAN, OK! -> BRENO NUNES
+    
     @POST
     @Transactional
     @Operation(summary = "Cadastrar um novo produto")
@@ -61,7 +61,7 @@ public class ProdutoController {
         return Response.created(builder.build()).entity(produto).build();
     }
 
-    //ROTA TESTADA NO NAVEGADOR, OK, RETORNANDO O JSON! -> BRENO NUNES
+    
     @GET
     @Path("/{id}")
     @Operation(summary = "Buscar produto por ID")
@@ -71,7 +71,7 @@ public class ProdutoController {
         return service.buscarPorId(id);
     }
 
-    //TODO: FALTA TESTAR
+    
     @PUT
     @Path("/{id}")
     @Transactional
@@ -83,7 +83,7 @@ public class ProdutoController {
         return Response.ok(new ProdutoDTO(atualizado)).build();
     }
 
-    //TODO: FALTA TESTAR
+    
     @DELETE
     @Path("/{id}")
     @Transactional
