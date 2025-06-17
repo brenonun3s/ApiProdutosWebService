@@ -5,3 +5,15 @@ CREATE TABLE tb_produtos (
     preco_produto DECIMAL(10, 2) NOT NULL,
     categoria_produto VARCHAR(50) NOT NULL
 );
+
+INSERT INTO tb_produtos (nome_produto, descricao_produto, preco_produto, categoria_produto, id) VALUES
+('Mouse Gamer', 'Mouse com iluminação RGB e 6 botões programáveis', 129.90, 'Periféricos', 1),
+('Teclado Mecânico', 'Teclado com switches azuis e iluminação LED', 249.50, 'Periféricos', 2),
+('Monitor 24"', 'Monitor Full HD com painel IPS', 899.00, 'Monitores', 3),
+('Headset Gamer', 'Headset com som surround e microfone embutido', 199.99, 'Áudio', 4),
+('Cadeira Gamer', 'Cadeira ergonômica com ajuste de altura', 1399.00, 'Móveis', 5),
+('Webcam Full HD', 'Webcam com resolução 1080p e foco automático', 299.00, 'Acessórios', 6),
+('HD Externo 1TB', 'HD portátil com conexão USB 3.0', 399.00, 'Armazenamento', 7),
+('Notebook i5', 'Notebook com 8GB RAM e SSD de 256GB', 3599.00, 'Informática', 8),
+('Placa de Vídeo GTX 1660', 'Placa de vídeo 6GB GDDR5', 1899.00, 'Hardware', 9),
+('Fonte 600W', 'Fonte com certificação 80 Plus Bronze', 399.90, 'Hardware', 10);
