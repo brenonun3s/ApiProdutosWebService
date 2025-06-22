@@ -1,25 +1,32 @@
 package com.example.controllers;
 
-import com.example.exceptions.ListaDeProdutosVaziaException;
-import com.example.exceptions.ProdutoNaoLocalizadoException;
+import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
 import com.example.dto.ProdutoDTO;
 import com.example.entities.Produto;
+import com.example.exceptions.ProdutoNaoLocalizadoException;
 import com.example.repositories.ProdutoRepository;
 import com.example.service.ProdutoService;
+
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.*;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriBuilder;
 import jakarta.ws.rs.core.UriInfo;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
-import java.util.List;
 
 @Path("/api/produtos")
 @Produces("application/json")
@@ -67,9 +74,14 @@ public class ProdutoController {
     @Operation(summary = "Buscar produto por ID")
     @APIResponse(responseCode = "200", description = "Produto encontrado")
     @APIResponse(responseCode = "404", description = "Produto não encontrado")
-    public Produto buscarProdutoPorId(@PathParam("id") Long id) {
-        return service.buscarPorId(id);
+    public Response buscarProdutoPorId(@PathParam("id") Long id) {
+        Produto produto = service.buscarPorId(id);
+        if (produto == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(produto).build();
     }
+    
 
     
     @PUT
